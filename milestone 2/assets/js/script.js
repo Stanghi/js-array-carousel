@@ -17,8 +17,9 @@ for(let i = 0; i < imagesArray.length; i++){
 
 let counterImages = 0;
 
-const up = document.querySelector('.up');
-const down = document.querySelector('.down');
+const prev = document.querySelector('.up');
+const next = document.querySelector('.down');
+prev.classList.add('hide');
 
 slider.innerHTML += imagesTags;
 
@@ -26,10 +27,24 @@ const items = document.getElementsByClassName('item');
 
 items[counterImages].classList.add('active');
 
-up.addEventListener('click', function(){
-    console.log('up');
+next.addEventListener('click', function(){
+    items[counterImages].classList.remove('active');
+    counterImages++;
+    items[counterImages].classList.add('active');
+
+    prev.classList.remove('hide');
+    if(counterImages === imagesArray.length -1){
+        next.classList.add('hide');
+    }
 });
 
-down.addEventListener('click', function(){
-    console.log('down');
+prev.addEventListener('click', function(){
+    items[counterImages].classList.remove('active');
+    counterImages--;
+    items[counterImages].classList.add('active');
+    
+    next.classList.remove('hide');
+    if(counterImages === 0){
+        prev.classList.add('hide');
+    }
 });
